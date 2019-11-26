@@ -27,6 +27,7 @@ window.onload = function(){
 
 function createNewGame(){
     //set player 1 and player 2 scores to 0
+    resetScores();
 
     //verify each player has a name
     //if both players don't have a name display error
@@ -38,6 +39,11 @@ function createNewGame(){
     document.getElementById("player1").setAttribute("disabled", "disabled");
     document.getElementById("player2").setAttribute("disabled", "disabled");
     changePlayers();
+}
+
+function resetScores() {
+    (<HTMLInputElement>document.getElementById("score1")).value = "0";
+    (<HTMLInputElement>document.getElementById("score2")).value = "0";
 }
 
 function rollDie():void{
