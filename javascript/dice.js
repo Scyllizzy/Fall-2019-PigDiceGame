@@ -15,11 +15,30 @@ window.onload = function () {
 };
 function createNewGame() {
     resetScores();
-    document.getElementById("turn").classList.add("open");
-    document.getElementById("total").value = "0";
-    document.getElementById("player1").setAttribute("disabled", "disabled");
-    document.getElementById("player2").setAttribute("disabled", "disabled");
-    changePlayers();
+    if (arePlayerNamesPresent()) {
+        document.getElementById("turn").classList.add("open");
+        document.getElementById("total").value = "0";
+        document.getElementById("player1").setAttribute("disabled", "disabled");
+        document.getElementById("player2").setAttribute("disabled", "disabled");
+        changePlayers();
+    }
+}
+function arePlayerNamesPresent() {
+    var isValid = true;
+    var player1Name = document.getElementById("player1").value;
+    var player2Name = document.getElementById("player2").value;
+    if (player1Name.trim() == "" || player1Name == null) {
+        displayError("Player 1");
+        isValid = false;
+    }
+    if (player2Name.trim() == "" || player2Name == null) {
+        displayError("Player 2");
+        isValid = false;
+    }
+    return isValid;
+}
+function displayError(player) {
+    alert("You must enter a name for " + player + ".");
 }
 function resetScores() {
     document.getElementById("score1").value = "0";

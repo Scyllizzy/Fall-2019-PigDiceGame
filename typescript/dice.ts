@@ -30,15 +30,40 @@ function createNewGame(){
     resetScores();
 
     //verify each player has a name
-    //if both players don't have a name display error
+    if (arePlayerNamesPresent()) {
+        //if both players do have a name start the game!
+        document.getElementById("turn").classList.add("open");
+        (<HTMLInputElement>document.getElementById("total")).value = "0";
+        
+        //lock in player names and then change players
+        document.getElementById("player1").setAttribute("disabled", "disabled");
+        document.getElementById("player2").setAttribute("disabled", "disabled");
+        changePlayers();
+    }    
+}
 
-    //if both players do have a name start the game!
-    document.getElementById("turn").classList.add("open");
-    (<HTMLInputElement>document.getElementById("total")).value = "0";
-    //lock in player names and then change players
-    document.getElementById("player1").setAttribute("disabled", "disabled");
-    document.getElementById("player2").setAttribute("disabled", "disabled");
-    changePlayers();
+function arePlayerNamesPresent():boolean {
+    let isValid = true;
+
+    let player1Name = (<HTMLInputElement>document.getElementById("player1")).value;
+    let player2Name = (<HTMLInputElement>document.getElementById("player2")).value;
+
+    //if both players don't have a name display error
+    if (player1Name.trim() == "" || player1Name == null) { //Simulate isNullOrWhiteSpace from C# because I like that particular method.
+        displayError("Player 1");
+        isValid = false;
+    }
+
+    if (player2Name.trim() == "" || player2Name == null) {
+        displayError("Player 2");
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function displayError(player:string):void {
+    alert("You must enter a name for " + player + ".");
 }
 
 function resetScores() {
