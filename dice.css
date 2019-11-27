@@ -23,6 +23,9 @@ input {
 fieldset {
     margin-bottom: 1em;
 }
+span {
+    color: red;
+}
 #turn {
     display: none;
 }
@@ -38,7 +41,7 @@ fieldset {
 }
 #new_game {
     width: 6em;
-    margin-left: 1em;
+    margin-left: 0em;
 }
 #hold {
     margin-right: 2em;
